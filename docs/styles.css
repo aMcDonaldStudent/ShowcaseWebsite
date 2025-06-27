@@ -90,6 +90,8 @@ button a {
 
 .about_section h1, .about_section h2 {
     text-align: center; /* Keep headings centered */
+    
+    
 }
 
 .about_section_content {
@@ -140,4 +142,7 @@ button a {
 /*stylings for the program section */
 #programs_header {
     background-color: rgb(197, 91, 179);
+}
+#about_section_header {
+    text-shadow: 1px 1px 2px;
 }
