@@ -1,0 +1,68 @@
+<html>
+    
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+    <!--This stylesheet is giving the ability to use custom icons from here-->
+    <link rel="stylesheet" href="styles.css">
+<head>
+    <title>Alex McDonald's About Page</title>
+</head>
+<body>
+    <div class="banner">
+        <div class="banner_content">
+            <div class="banner_text">
+                This page will tell you a little about myself.
+            </div>
+            <button class="banner_close" type="button">
+                <span class="material-icons">
+                    <!-- It might not look like it but this is taking input from googleapi
+                     stylesheet to make this inner value determine what this looks like
+                     You can see it at: https://fonts.google.com/icons?selected=Material+Symbols+Outlined:close:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%231f1f1f
+                    -->
+                    close
+                </span>
+            </button>
+        </div>
+    </div>
+    <!--Banner at top^-->
+    <div class="nav_bar">
+        <div class="nav_div">
+            <div class="nav_logo">
+                <a href="https://hips.hearstapps.com/hmg-prod/images/dog-puppy-on-garden-royalty-free-image-1586966191.jpg?crop=1xw:0.74975xh;0,0.190xh&resize=1200:*">Coding</a> 
+            </div>
+            <ul><!--These links are currently empty but I can add to them later -->
+                
+                <li class="nav_button"><a href="https://localhost/McDonald_Final/index.php">Home</a></li>
+                <!-- This is about page <li class="nav_button"><a href="#">About</a></li> -->
+                <li class="nav_button"><a href="#">Contact</a></li>
+                
+            </ul>
+        </div>
+    </div>
+    <!--Navigation bar^-->
+    
+ <div class="about_section">
+        <h1>Alex McDonald's Website</h1>
+        <h2>About me:</h2>
+        <div class="about_section_content">
+            <img src="Professional_Photo.png" alt="Professional Photo">
+            <div id="contactInfo">
+                <h4><u><i>Contact me at</i></u></h4>
+                <p>(804) 840-9507</p><br>
+                <p>Address: 2415 Lake Loreine Ln</p><br>
+                <p>Email: Alex@mc-ds.com</p><br>
+            <p>I am a fresh graduate out of ECPI University who is looking to break into the coding space. I love the way many programs fit together to make something special like a Rube Goldberg machine of excellence.
+                I first gained this appreciation for design after taking a web development course in 2021 that taught me about good and bad website design.
+            I enjoy the feeling of being a part of a team and I think I am an excellent team player who is able to fit whatever role may be needed. 
+            I've owned dogs all my life so I have a great sense of duty and promptness, waking up early and always being on time for events. Growing up with ADHD I learned the hard way about how to manage tasks and organize myself.
+            In the long run, these early trials have helped increase my perseverence and work ethic as an individual greatly and I hope to succeed in taking these skills into the workplace.</p>
+        </div>
+    </div>
+  </div>
+    <a href="Programs/Counter_Program">Counter Program</a>
+    <script>
+        document.querySelector(".banner_close").addEventListener("click", function() {
+            this.closest(".banner").style.display = "none";
+        });
+    </script>
+</body>
+</html>
