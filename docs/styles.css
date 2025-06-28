@@ -114,6 +114,10 @@ button a {
     text-align: left; /* Align the paragraph text to the left */
     max-width: 80%; /* Limit the paragraph width */
 }
+
+#about_section_header {
+    text-shadow: 1px 1px 2px;
+}
 /*about section stuff*/
 
 #contactInfo p{
@@ -123,9 +127,11 @@ button a {
 .program_section{
     align-items: center;
     margin: 20px 20px 0;
-    padding: 30px;
-    background-color: blueviolet;
+    padding: 25px;
+    /* background-color: blueviolet; */
+    background-color: rgba(0, 0, 0, 0.774);
     transition: transform 0.3s ease;
+    
 }
 .program_section img{
     width: 300px;
@@ -140,9 +146,10 @@ button a {
     box-shadow: 0 0 20px rgb(216, 199, 231);
 }
 /*stylings for the program section */
-#programs_header {
-    background-color: rgb(197, 91, 179);
-}
-#about_section_header {
+#programs_header h1{
+    /* background-color: rgb(197, 91, 179); */
+    background-color: silver;
     text-shadow: 1px 1px 2px;
 }
+
+
