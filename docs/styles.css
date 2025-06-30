@@ -123,7 +123,7 @@ button a {
 #contactInfo p{
     font-size: 1rem;
 }
-
+/*contact info stuff */
 .program_section{
     align-items: center;
     margin: 20px 20px 0;
@@ -152,4 +152,56 @@ button a {
     text-shadow: 1px 1px 2px;
 }
 
+
+/*programs section stuff*/
+.skills_section{
+    align-items: center;
+    margin: 20px 20px 0;
+    /* background-color: blueviolet; */
+    background-color: rgba(22, 66, 189, 0.945);
+    transition: transform 0.3s ease;
+    color: white;
+    text-shadow: 1px 1px 2px;
+    font-size: 1.5rem;
+    padding: 30px;
+}
+/*stylings for the program section */
+#skills_header h1{
+    
+    background-color: silver;
+    text-shadow: 1px 1px 2px;
+    font-size: 2rem;
+    font-size: 2em;
+    margin-bottom: 20px; /* sets it a bit closer to the pods */
+    color: black;
+}
+
+/* machine: */
+
+
+.skills_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  justify-items: center; /*Looks better this way */
+  max-width: 1100px; /* Roughly forces it to max at 5 across */
+  margin: 0 auto; /* helps set it to middle */
+}
+
+.skill {
+  background-color: #222; /* background color styling */
+  color: #fff; /* general color */
+  padding: 10px 15px;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+.skill:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  background-color: #444;
+}
 
