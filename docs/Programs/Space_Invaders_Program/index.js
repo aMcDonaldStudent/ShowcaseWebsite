@@ -5,6 +5,10 @@ const obstacle3 = document.getElementById("obstacle3");
 const obstacle4 = document.getElementById("obstacle4");
 const obstacle5 = document.getElementById("obstacle5");
 const obstacle6 = document.getElementById("obstacle6");
+const obstacle7 = document.getElementById("obstacle7");
+const obstacle8 = document.getElementById("obstacle8");
+const obstacle9 = document.getElementById("obstacle9");
+const obstacle10 = document.getElementById("obstacle10");
 
 
 const blasterContainer = document.createElement("div");
@@ -84,6 +88,19 @@ document.addEventListener("mousemove", (event) => {
   mouseY = event.clientY;
 });
 
+
+//Starts the turtle in a better position:
+function positionTurtleStart() {
+  const turtleWidth = turtle.offsetWidth;
+  const turtleHeight = turtle.offsetHeight;
+
+  const startX = window.innerWidth / 2 - turtleWidth / 2;
+  const startY = window.innerHeight - turtleHeight - 20;
+
+  turtle.style.left = `${startX}px`;
+  turtle.style.top = `${startY}px`;
+}
+positionTurtleStart(); //This goes BEFORE moveTurtle() to adjust the starting position
 // Move turtle every frame
 function moveTurtle() {
   if (gameOver) return; // Stop movement after losing
@@ -125,6 +142,10 @@ function checkTurtleCollision() {
   const obstacleRect4 = obstacle4.getBoundingClientRect();
   const obstacleRect5 = obstacle5.getBoundingClientRect();
   const obstacleRect6 = obstacle6.getBoundingClientRect();
+  const obstacleRect7 = obstacle7.getBoundingClientRect();
+  const obstacleRect8 = obstacle8.getBoundingClientRect();
+  const obstacleRect9 = obstacle9.getBoundingClientRect();
+  const obstacleRect10 = obstacle10.getBoundingClientRect();
 
 
   if (isColliding(turtleRect, obstacleRect1) || isColliding(turtleRect, obstacleRect2) ||
@@ -155,6 +176,21 @@ function handleLose() {
     loseMessage.style.fontSize = "2em";
     loseMessage.style.color = "red";
     document.body.appendChild(loseMessage);
+
+    const restartButton = document.createElement("button");
+    restartButton.textContent = "🔁 Restart";
+    restartButton.style.display = "block";
+    restartButton.style.margin = "300px auto 0";
+    restartButton.style.padding = "10px 20px";
+    restartButton.style.fontSize = "1.2em";
+    restartButton.style.cursor = "pointer";
+
+    restartButton.onclick = () => {
+      location.reload(); // Simple way to restart the entire page
+    };
+
+document.body.appendChild(restartButton);
+
 }
 
 function handleWin() {
@@ -176,8 +212,94 @@ function handleWin() {
     winMessage.style.color = "green";
     document.body.appendChild(winMessage);
 
+    const restartButton = document.createElement("button");
+    restartButton.textContent = "🔁 Restart";
+    restartButton.style.display = "block";
+    restartButton.style.margin = "300px auto 0";
+    restartButton.style.padding = "10px 20px";
+    restartButton.style.fontSize = "1.2em";
+    restartButton.style.cursor = "pointer";
+
+    restartButton.onclick = () => {
+      location.reload(); // Simple way to restart the entire page
+    };
+
+    document.body.appendChild(restartButton)
 }
 
 moveTurtle(); // Start the turtle movement loop
+
+
+//Below is the enemy firing logic:
+//first the general path and loss condition
+function fireEnemyBlaster(obstacle) {
+  if (gameOver || !document.body.contains(obstacle)) return;
+
+  const obsRect = obstacle.getBoundingClientRect();
+
+  const enemyBlaster = document.createElement("div");
+  enemyBlaster.className = "enemy-blaster";
+
+  // Start at center-bottom of the obstacle
+  const startX = obsRect.left + obsRect.width / 2 - 2;
+  const startY = obsRect.bottom;
+  //fires the laser out of the bottom
+
+  enemyBlaster.style.left = `${startX}px`;
+  enemyBlaster.style.top = `${startY}px`;
+
+  document.body.appendChild(enemyBlaster);
+
+  let y = startY;
+  //from the starting position it goes down
+
+  function moveDown() {
+    if (gameOver) {
+      enemyBlaster.remove();
+      return;
+    }
+
+    y += 5;
+    enemyBlaster.style.top = `${y}px`;
+
+    const turtleRect = turtle?.getBoundingClientRect();
+    const blasterRect = enemyBlaster.getBoundingClientRect();
+
+    // COLLISION WITH TURTLE
+    if (turtle && isColliding(turtleRect, blasterRect)) {
+      enemyBlaster.remove();
+      handleLose();
+      return;
+    }
+
+    if (y > window.innerHeight + 20) {
+      enemyBlaster.remove(); // clean up if off screen
+    } else {
+      requestAnimationFrame(moveDown);
+    }
+  }
+
+  requestAnimationFrame(moveDown);
+}
+//Firing loop
+function startEnemyFire() {
+  const obstacles = document.querySelectorAll(".obstacle");
+
+  obstacles.forEach(obstacle => {
+    function loopFire() {
+      if (gameOver || !document.body.contains(obstacle)) return;
+
+      fireEnemyBlaster(obstacle);
+
+      const delay = 2500 + Math.random() * 2000; // 2–4 seconds
+      setTimeout(loopFire, delay);
+    }
+
+    loopFire(); // start it once
+  });
+}
+
+startEnemyFire();
+
 
 
