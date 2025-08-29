@@ -62,6 +62,8 @@ button a {
   position: absolute;
   border-radius: 50%;
   background-color: red;
+  background-image: url(game_sprites/enemy_ship.png); /*we get a little enemy ship image */
+  background-size: contain;      /*we then scale the little enemy ship image to be contained in the small bubble */
 }
 
 /*positioning for each obstacle */
@@ -136,4 +138,19 @@ button a {
 }
 body{
   overflow: hidden; /*This prevents enemy blasters from activiting the scrollbar for a split second before despawning */
+}
+/* Cheat section below */
+#cheatActMessage {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.7);
+  color: lime;
+  font-size: 20px;
+  padding: 10px 20px;
+  border-radius: 10px;
+  display: none; /* hidden by default */
+  z-index: 1000; /* make sure it's on top */
+  font-family: monospace;
 }

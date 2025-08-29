@@ -88,6 +88,21 @@ document.addEventListener("mousemove", (event) => {
   mouseY = event.clientY;
 });
 
+//CHEATS FUNCTIONS 
+document.addEventListener("keydown", (event) => {
+  if (event.key === "r") {
+    clearInterval(blasterInterval);
+    blasterInterval = setInterval(fireBlaster, 300);
+
+    const cheatActMessage = document.getElementById("cheatActMessage");
+    cheatActMessage.style.display = "block";
+    cheatActMessage.innerHTML = "R key pressed. Rapid Fire Activated.";
+    setTimeout(() => {
+      cheatActMessage.style.display = "none";
+    }, 2000);
+  }
+});
+
 
 //Starts the turtle in a better position:
 function positionTurtleStart() {
@@ -116,9 +131,10 @@ function moveTurtle() {
   // This gives you the straight line distance from the mouse
 
   if (distance > 1) {
-    turtle.style.left = rect.left + dx / distance * 3 + "px";
-    turtle.style.top = rect.top + dy / distance * 3 + "px";
+    turtle.style.left = rect.left + dx / distance * 5 + "px";
+    turtle.style.top = rect.top + dy / distance * 5 + "px";
     //These two control the speed of the turtle
+    //NORMALLY THIS IS LIKE 3 OR 4?
   }
 
   // Check for collisions between turtle and obstacles
@@ -150,7 +166,9 @@ function checkTurtleCollision() {
 
   if (isColliding(turtleRect, obstacleRect1) || isColliding(turtleRect, obstacleRect2) ||
       isColliding(turtleRect, obstacleRect3) || isColliding(turtleRect, obstacleRect4) ||
-      isColliding(turtleRect, obstacleRect5) || isColliding(turtleRect, obstacleRect6)) {
+      isColliding(turtleRect, obstacleRect5) || isColliding(turtleRect, obstacleRect6) ||
+      isColliding(turtleRect, obstacleRect7) || isColliding(turtleRect, obstacleRect8) ||
+      isColliding(turtleRect, obstacleRect9) || isColliding(turtleRect, obstacleRect10) ) {
     handleLose();
   }
 }
