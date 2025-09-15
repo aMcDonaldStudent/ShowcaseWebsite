@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Watches</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        .video-section {
+            position: relative;
+            height: 300vh; /* big space so we can scroll for text */
+            overflow: hidden;
+        }
+        
+        .background-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -1;
+        }
+        
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+            transition: opacity 0.5s ease;
+        }
+        
+        .text-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+            z-index: 2;
+            width: 90%;
+            max-width: 800px;
+        }
+        
+        .text-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .text-slide.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .text-slide h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 300;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        
+        .text-slide p {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-weight: 300;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            line-height: 1.4;
+        }
+        
+        .content-section {
+            position: relative;
+            background: white;
+            z-index: 3;
+            padding: 100px 50px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .content-inner {
+            max-width: 1000px;
+            text-align: center;
+        }
+        
+        .content-section h2 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            color: #2c2c2c;
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+        
+        .content-section p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .highlight {
+            color: #c9a96e;
+            font-weight: 400;
+        }
+
+        /* 3D Viewer Section Styles */
+        .viewer-section {
+            position: relative;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            z-index: 3;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+        }
+
+        .viewer-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1400px;
+            width: 100%;
+            gap: 50px;
+        }
+
+        .viewer-info {
+            flex: 1;
+            color: white;
+            max-width: 500px;
+        }
+
+        .viewer-info h2 {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            margin-bottom: 2rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .viewer-info p {
+            font-size: clamp(1.1rem, 2vw, 1.3rem);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        #container3D {
+            flex: 1;
+            height: 70vh;
+            min-height: 500px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        #loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-family: 'Georgia', serif;
+            font-size: 18px;
+            text-align: center;
+        }
+
+        @media (max-width: 1024px) {
+            .viewer-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .viewer-info {
+                text-align: center;
+                max-width: 100%;
+            }
+
+            #container3D {
+                width: 100%;
+                height: 60vh;
+                min-height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .content-section, .viewer-section {
+                padding: 80px 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="video-section">
+        <video 
+            class="background-video"
+            autoplay 
+            muted 
+            loop 
+            playsinline
+            preload="auto"
+            disablepictureinpicture
+        >
+            <source src="https://media.rolex.com/video/upload/c_limit,q_auto:best,w_2880/vc_vp9/v1/rolexcom/collection/family-pages/classic-watches/day-date/family-page/videos/cover/long-film/video-cover_2022-retailer-film-day-date-film-version-c-30-16x9-texted-clock-py-ly-portrait.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        <img src="Rolex_No_Background.png" class="m-6 p-6">
+        <!--little rolex logo-->
+        <div class="video-overlay"></div>
+        
+        <nav class="fixed top-8 left-1/2 transform -translate-x-1/2 z-10 flex space-x-6">
+          <button class="bg-yellow-500 hover:bg-yellow-600 px-4 py-3 rounded-lg transition-colors">
+            <a href="#" class="text-gray-800 font-bold">Home</a>
+          </button>
+          <button class="bg-yellow-500 hover:bg-yellow-600 px-4 py-3 rounded-lg transition-colors">
+            <a href="#" class="text-gray-800 font-bold">Catalogue</a>
+          </button>
+          <button class="bg-yellow-500 hover:bg-yellow-600 px-4 py-3 rounded-lg transition-colors">
+            <a href="#" class="text-gray-800 font-bold">About</a>
+          </button>
+          <button class="bg-yellow-500 hover:bg-yellow-600 px-4 py-3 rounded-lg transition-colors">
+            <a href="#" class="text-gray-800 font-bold">Contact</a>
+          </button>
+        </nav>
+
+        <div class="text-container">
+            <div class="text-slide" id="slide1">
+                <h1>Welcome to the best watch you will ever own</h1>
+                <p>Elegance, Style, Precision, Durability, Perfection</p>
+            </div>
+            
+            <div class="text-slide" id="slide2">
+                <h1>Perfection is what we do</h1>
+                <p>Every detail meticulously crafted for those who demand excellence</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="content-section">
+        <div class="content-inner">
+            <h2>Decades of <span class="highlight">Mastery</span></h2>
+            <p>
+                For over half a century, our artisans have dedicated their lives to perfecting the ancient art of watchmaking. Each timepiece represents not just a moment in time, but a culmination of generations of expertise passed down through skilled hands.
+            </p>
+            <p>
+                Our commitment to <span class="highlight">craftsmanship</span> goes beyond mere precision. It's an obsession with details so fine that they can only be appreciated by those who truly understand the difference between good and extraordinary.
+            </p>
+            <p>
+                Every gear, every spring, every microscopic component is assembled with the patience and skill that can only come from decades of mastering the craft. This is not just about telling time – this is about honoring it.
+            </p>
+        </div>
+    </div>
+
+    <!-- 3D watch section-->
+    <div class="viewer-section">
+        <div class="viewer-container">
+            <div class="viewer-info">
+                <h2>Experience <span class="highlight">Perfection</span></h2>
+                <p>
+                    Witness every intricate detail of our masterpiece in stunning 3D. Rotate, zoom, and explore the watch that defines luxury and precision.
+                </p>
+                <p>
+                    From the polished case to the precise movement, every element has been crafted to perfection. This is not just a timepiece – it's a work of art.
+                </p>
+            </div>
+            
+            <div id="container3D">
+                <div id="loading">Loading watch model...</div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // Video section scroll effects
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.text-slide');
+        const videoOverlay = document.querySelector('.video-overlay');
+        
+        function updateSlides() {
+            const scrollPercent = window.scrollY / (window.innerHeight * 2);
+            
+            // Show first slide initially
+            if (scrollPercent < 0.3) {
+                setActiveSlide(0);
+            }
+            // Transition to second slide
+            else if (scrollPercent >= 0.3 && scrollPercent < 0.8) {
+                setActiveSlide(1);
+            }
+            // Fade out both slides as we approach the content section
+            else {
+                setActiveSlide(-1);
+            }
+            
+            // Fade out video overlay as we scroll
+            if (scrollPercent > 0.7) {
+                const fadeAmount = Math.min(1, (scrollPercent - 0.7) / 0.3);
+                videoOverlay.style.opacity = 1 - fadeAmount;
+            } else {
+                videoOverlay.style.opacity = 1;
+            }
+        }
+        
+        function setActiveSlide(index) {
+            slides.forEach((slide, i) => {
+                if (i === index) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+        }
+        
+        // Initialize first slide
+        setActiveSlide(0);
+        
+        // Smooth scroll handling with throttling
+        let ticking = false;
+        
+        function handleScroll() {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateSlides();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+        
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', updateSlides);
+
+        // 3D Watch Viewer Code
+        //Import the THREE.js library
+        import * as THREE from "https://cdn.skypack.dev/three@0.129.0/build/three.module.js";
+        // to allow for the camera to move around the scene
+        import { OrbitControls } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls.js";
+        // To allow for importing the .gltf file
+        import { GLTFLoader } from "https://cdn.skypack.dev/three@0.129.0/examples/jsm/loaders/GLTFLoader.js";
+
+        //Create a Three.js Scene
+        const scene = new THREE.Scene();
+        //create a new camera with position and angles
+        const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+
+        //Keep the 3D object on a global variable so we can access it later
+        let object;
+
+        //OrbitControls allow the camera to move around the scene
+        let controls;
+
+        //Set which object to render
+        let objToRender = 'watch';
+
+        //Instantiate a new renderer and set its size
+        const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true }); 
+        renderer.shadowMap.enabled = true;
+        renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+        
+        // Enable tone mapping for better material rendering
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 1.0;
+        renderer.outputEncoding = THREE.sRGBEncoding;
+
+        const container3D = document.getElementById("container3D");
+
+        function resizeRenderer() {
+            const rect = container3D.getBoundingClientRect();
+            renderer.setSize(rect.width, rect.height);
+            camera.aspect = rect.width / rect.height;
+            camera.updateProjectionMatrix();
+        }
+
+        //Add the renderer to the DOM
+        container3D.appendChild(renderer.domElement);
+
+        //Set how far the camera will be from the 3D model
+        camera.position.set(0, 0, 5);
+
+        // Initialize OrbitControls
+        controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.25;
+        controls.screenSpacePanning = false;
+        controls.maxPolarAngle = Math.PI / 2;
+
+        // Create a loading manager to handle all assets
+        const loadingManager = new THREE.LoadingManager();
+        
+        loadingManager.onLoad = function() {
+            console.log('All resources loaded successfully');
+            document.getElementById('loading').style.display = 'none';
+        };
+        
+        loadingManager.onProgress = function(url, itemsLoaded, itemsTotal) {
+            console.log('Loading progress: ' + itemsLoaded + '/' + itemsTotal + ' files loaded');
+        };
+        
+        loadingManager.onError = function(url) {
+            console.error('Error loading: ' + url);
+        };
+
+        const loader = new GLTFLoader(loadingManager);
+
+        // Load your actual watch model
+        loader.load(
+            `models/${objToRender}/wrist_watch_gltf/scene.gltf`,
+            function (gltf) {
+                console.log('GLTF loaded successfully:', gltf);
+                //if the file is loaded, add it to the scene
+                object = gltf.scene;
+                scene.add(object);
+                
+                // Debug and fix materials and textures
+                object.traverse(function (child) {
+                    if (child.isMesh) {
+                        console.log('Mesh found:', child.name);
+                        console.log('Material:', child.material);
+                        
+                        // Enable shadows
+                        child.castShadow = true;
+                        child.receiveShadow = true;
+                        
+                        if (child.material) {
+                            // Fix texture encoding for proper color display
+                            if (child.material.map) {
+                                child.material.map.encoding = THREE.sRGBEncoding;
+                                child.material.map.flipY = false;
+                                console.log('Texture found and fixed:', child.material.map);
+                            }
+                            
+                            // Fix other texture maps if they exist
+                            if (child.material.normalMap) {
+                                child.material.normalMap.encoding = THREE.LinearEncoding;
+                            }
+                            
+                            if (child.material.roughnessMap) {
+                                child.material.roughnessMap.encoding = THREE.LinearEncoding;
+                            }
+                            
+                            if (child.material.metalnessMap) {
+                                child.material.metalnessMap.encoding = THREE.LinearEncoding;
+                            }
+                            
+                            // Ensure material updates
+                            child.material.needsUpdate = true;
+                        }
+                    }
+                });
+                
+                // Auto-fit the model in view
+                const box = new THREE.Box3().setFromObject(object);
+                const center = box.getCenter(new THREE.Vector3());
+                const size = box.getSize(new THREE.Vector3());
+                
+                // Move object to center
+                object.position.sub(center);
+                
+                // Adjust camera to fit the model
+                const maxDim = Math.max(size.x, size.y, size.z);
+                camera.position.set(maxDim * 1.5, maxDim * 1.5, maxDim * 1.5);
+                controls.target.set(0, 0, 0);
+                controls.update();
+            },
+            function (xhr) {
+                //while it is loading log the progress
+                if (xhr.lengthComputable) {
+                    const percentComplete = xhr.loaded / xhr.total * 100;
+                    console.log(percentComplete.toFixed(2) + '% loaded');
+                    document.getElementById('loading').textContent = `Loading watch model... ${Math.round(percentComplete)}%`;
+                }
+            },
+            function (error) {
+                //if there is an error, log it
+                console.error('Detailed error:', error);
+                console.error('Make sure you have scene.gltf, result.bin, and textures folder in models/watch/wrist_watch_gltf/');
+                document.getElementById('loading').textContent = 'Error loading model - check console and file structure';
+            }
+        );
+
+        //Add lights - optimized for watch rendering
+        const ambientLight = new THREE.AmbientLight(0x404040, 0.4);
+        scene.add(ambientLight);
+
+        // Main directional light
+        const directionalLight = new THREE.DirectionalLight(0xffffff, 1.0);
+        directionalLight.position.set(10, 10, 5);
+        directionalLight.castShadow = true;
+        directionalLight.shadow.mapSize.width = 2048;
+        directionalLight.shadow.mapSize.height = 2048;
+        scene.add(directionalLight);
+
+        // Fill light from opposite side
+        const directionalLight2 = new THREE.DirectionalLight(0xffffff, 0.5);
+        directionalLight2.position.set(-5, -5, -5);
+        scene.add(directionalLight2);
+
+        // Rim light for definition
+        const directionalLight3 = new THREE.DirectionalLight(0xffffff, 0.3);
+        directionalLight3.position.set(0, -10, 10);
+        scene.add(directionalLight3);
+
+        // Create a subtle environment map for reflections
+        const pmremGenerator = new THREE.PMREMGenerator(renderer);
+        const envScene = new THREE.Scene();
+        envScene.background = new THREE.Color(0x333333);
+        scene.environment = pmremGenerator.fromScene(envScene).texture;
+
+        // Initial resize
+        setTimeout(resizeRenderer, 100);
+
+        //Render the scene
+        function animate() {
+            requestAnimationFrame(animate);
+            
+            controls.update();
+            renderer.render(scene, camera);
+            
+            // Optional: Add some rotation to the watch
+            if (object) {
+                object.rotation.y += 0.003;
+            }
+        }
+
+        //Add a listener to the window, so we can resize the window and the camera
+        window.addEventListener("resize", resizeRenderer);
+
+        // Start the 3D Rendering
+        animate();
+    </script>
+</body>
+</html>
