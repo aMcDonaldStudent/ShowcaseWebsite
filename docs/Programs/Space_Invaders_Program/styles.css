@@ -62,7 +62,7 @@ button a {
   position: absolute;
   border-radius: 50%;
   background-color: red;
-  background-image: url(game_sprites/enemy_ship.png); /*we get a little enemy ship image */
+  background-image: url("game_sprites/enemy_ship.png"); /*we get a little enemy ship image */
   background-size: contain;      /*we then scale the little enemy ship image to be contained in the small bubble */
 }
 
