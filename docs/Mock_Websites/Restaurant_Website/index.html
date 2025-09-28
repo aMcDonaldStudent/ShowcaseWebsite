@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burger Mockup</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .image-container {
+      position: relative;
+      width: 100vw;
+      height: 700px;
+      background-image: url('red-wine-and-fish.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: local;
+    }
+
+    .hero-overlay-shadow {
+      background-image: radial-gradient(50% 99%, rgba(238, 238, 238, 0) 30%, rgba(0, 0, 0, 0.12) 66%, #000 100%);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: -70px;
+      z-index: 2;
+    }
+    
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body class="text-gray-900">
+  
+  <!-- Container with background image -->
+  <div class="image-container">
+    
+    <!-- Vignette overlay -->
+    <div class="hero-overlay-shadow"></div>
+    
+    <!-- Header Navigation -->
+    <header class="relative z-20">
+      <div class="max-w-xl mx-auto px-4 py-4 flex justify-between items-center">
+        <img src="Parlor_no_background-modified.png" class="w-32 h-32">
+        <nav class="space-x-6">
+          <button class="bg-yellow-500 hover:bg-yellow-600 px-4 py-3 rounded-lg transition-colors">
+            <a href="#" class="text-gray-800 font-bold">Home</a>
+          </button>
+          <button class="bg-yellow-500 hover:bg-yellow-600 px-4 py-3 rounded-lg transition-colors">
+            <a href="#" class="text-gray-800 font-bold">Menu</a>
+          </button>
+          <button class="bg-yellow-500 hover:bg-yellow-600 px-4 py-3 rounded-lg transition-colors">
+            <a href="#" class="text-gray-800 font-bold">About</a>
+          </button>
+          <button class="bg-yellow-500 hover:bg-yellow-600 px-4 py-3 rounded-lg transition-colors">
+            <a href="#" class="text-gray-800 font-bold">Contact</a>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Content -->
+    <div class="relative z-20 max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-8 items-center" >
+      
+
+      <!-- Right: Text -->
+      <div class="text-white space-y-6">
+        <h2 class="text-4xl font-bold leading-tight text-gray-200 bg-opacity-15 bg-black"><span class="text-yellow-300"><u>Treat yourself</u></span> every once in a while.</h2>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-8 mt-8 ml-5 mr-5 px-4">
+      
+      <!-- Image 1 -->
+      <div class="text-center">
+        <img src="Salad_Bar.webp" 
+             alt="Salad Bar" 
+             class="rounded-2xl aspect-square w-full object-cover shadow-2xl mb-4 m-2">
+        <h3 class="text-xl font-bold text-gray-800 mb-2 ml-5">Garden Fresh Salads</h3>
+        <p class="text-gray-600 mb-4">Crisp lettuce, fresh vegetables, and premium toppings</p>
+        <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition">
+          Order Now
+        </button>
+      </div>
+
+      <!-- Image 2 -->
+      <div class="text-center">
+        <img src="Protein_Bowl.jpg" 
+             alt="Second dish" 
+             class="rounded-2xl aspect-square w-full object-cover shadow-2xl mb-4 m-2">
+        <h3 class="text-xl font-bold text-gray-800 mb-2">Protein Bowls</h3>
+        <p class="text-gray-600 mb-4">Quinoa, grilled chicken, and seasonal vegetables</p>
+        <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition">
+          Order Now
+        </button>
+      </div>
+
+      <!-- Image 3 -->
+      <div class="text-center">
+        <img src="Healthy_Wraps.jpg" 
+             alt="Third dish" 
+             class="rounded-2xl aspect-square w-full object-cover shadow-2xl mb-4 m-2">
+        <h3 class="text-xl font-bold text-gray-800 mb-2">Wraps & More</h3>
+        <p class="text-gray-600 mb-4">Fresh wraps with organic ingredients</p>
+        <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded-lg transition">
+          Order Now
+        </button>
+      </div>
+
+    </div>
+</body>
+</html>

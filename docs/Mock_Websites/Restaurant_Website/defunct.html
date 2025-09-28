@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Burger Mockup</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .image-container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background-image: url('red-wine-and-fish.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: local;
+    }
+
+    .hero-overlay-shadow {
+      background-image: radial-gradient(50% 99%, rgba(238, 238, 238, 0) 30%, rgba(0, 0, 0, 0.12) 66%, #000 100%);
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: -70px;
+      z-index: 2;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body class="text-gray-900">
+  
+  <!-- Container with background image -->
+  <div class="image-container">
+    
+    <!-- Vignette overlay -->
+    <div class="hero-overlay-shadow"></div>
+    
+    <!-- Header Navigation -->
+    <header class="relative z-20">
+      <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <img src="Parlor_no_background-modified.png" class="w-32 h-32">
+        <nav class="space-x-6">
+          <button class="bg-yellow-500 hover:bg-yellow-600 px-4 py-3 rounded-lg transition-colors">
+            <a href="#" class="text-gray-800 font-bold">Home</a>
+          </button>
+          <button class="bg-yellow-500 hover:bg-yellow-600 px-4 py-3 rounded-lg transition-colors">
+            <a href="#" class="text-gray-800 font-bold">Menu</a>
+          </button>
+          <button class="bg-yellow-500 hover:bg-yellow-600 px-4 py-3 rounded-lg transition-colors">
+            <a href="#" class="text-gray-800 font-bold">About</a>
+          </button>
+          <button class="bg-yellow-500 hover:bg-yellow-600 px-4 py-3 rounded-lg transition-colors">
+            <a href="#" class="text-gray-800 font-bold">Contact</a>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Content -->
+    <div class="relative z-20 max-w-7xl mx-auto px-4 py-12 grid md:grid-cols-2 gap-8 items-center">
+      
+      <!-- Left: Image -->
+      <div class="flex justify-center">
+        <img src="Burger_in_restaurant.jpg" 
+             alt="Burger" 
+             class="rounded-2xl max-h-96 object-cover shadow-2xl">
+      </div>
+
+      <!-- Right: Text -->
+      <div class="text-white space-y-6">
+        <h2 class="text-4xl font-extrabold leading-tight">Try our <span class="text-yellow-400 underline">mouthwatering</span> beef patty burger</h2>
+        <p class="text-gray-200">Crafted with 100% fresh beef, melty cheese, and toasted buns — it's the burger you've been craving.</p>
+        <button class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold py-3 px-6 rounded-lg shadow-md transition-all hover:shadow-lg">
+          Order Now
+        </button>
+      </div>
+    </div>
+    
+  </div>
+
+  <!-- Salad Section (no background image) -->
+  <section class="bg-gray-100 relative">
+    <div class="max-w-7xl mx-auto px-4 py-20 grid md:grid-cols-2 gap-8 items-center">
+      
+      <!-- Left: Text -->
+      <div class="text-gray-800 space-y-6">
+        <h2 class="text-4xl font-extrabold leading-tight">Fresh & <span class="text-green-600 underline">healthy</span> salad options</h2>
+        <p class="text-gray-600">Farm-fresh greens, crisp vegetables, and house-made dressings — perfect for a lighter, nutritious meal.</p>
+        <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg shadow-md transition-all hover:shadow-lg">
+          Try Our Salads
+        </button>
+      </div>
+
+      <!-- Right: Image -->
+      <div class="flex justify-center">
+        <img src="Salad_Bar.webp" 
+             alt="Salad Bar" 
+             class="rounded-2xl max-h-96 object-cover shadow-2xl">
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>
