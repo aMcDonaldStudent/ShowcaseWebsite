@@ -1,6 +1,6 @@
 (function() {
   // The URL of your Google Apps Script Web App.
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyAPK-ke1Af8m5_KZ_BrVtRMCMniQwefs7l-ldiaECKL3bxD4fqorpeLuAVFTLWLsi_/exec";
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMZ2qo5YK4SlZnRiEBNEGCT4GPUBMX08f9sVQB0_TamVBZfIFw42tXPsMHUir29Yh9/exec";
   const COOKIE_NAME = 'visitTracker';
 
   /**
@@ -37,10 +37,10 @@
 
   /**
    * Sends a POST request to the Google Apps Script to record a timestamp and cookie value.
+   * This version runs silently without updating the UI.
    * @param {string|number} cookieValue - The value to send to the script.
    */
   function sendTimestamp(cookieValue) {
-    const statusDiv = document.getElementById('status');
     const xhr = new XMLHttpRequest();
     xhr.open('POST', SCRIPT_URL);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -51,21 +51,14 @@
           try {
             const response = JSON.parse(xhr.responseText);
             if (response.result === "success") {
-              statusDiv.textContent = "Timestamp successfully sent!";
-              statusDiv.className = "status-message success";
+              console.log("Timestamp successfully sent!");
             } else {
-              statusDiv.textContent = "An error occurred: " + (response.error.message || "Unknown script error");
-              statusDiv.className = "status-message error";
               console.error("Script error:", response.error);
             }
           } catch (e) {
-              statusDiv.textContent = "Failed to parse response from server.";
-              statusDiv.className = "status-message error";
               console.error("Parsing error:", e, "Response was:", xhr.responseText);
           }
         } else {
-          statusDiv.textContent = "Failed to send timestamp. Server responded with status: " + xhr.status;
-          statusDiv.className = "status-message error";
           console.error("HTTP error:", xhr.status, xhr.statusText);
         }
       }
@@ -81,29 +74,25 @@
 
   /**
    * Main function that runs when the page loads.
-   * Checks for a cookie and decides whether to send a timestamp.
+   * It checks for a cookie, generates one if needed, and ALWAYS sends the data.
    */
   function handlePageLoad() {
-    const statusDiv = document.getElementById('status');
-    const existingCookie = getCookie(COOKIE_NAME);
+    let cookieValueToSend = getCookie(COOKIE_NAME);
 
-    if (existingCookie) {
-      // If the cookie exists, don't send anything.
-      statusDiv.textContent = "You've visited recently. Timestamp not sent.";
-      statusDiv.className = "status-message sending"; // A neutral-ish color
-      console.log(`Cookie '${COOKIE_NAME}' found with value: ${existingCookie}. No action taken.`);
+    if (cookieValueToSend) {
+      // If the cookie exists, we'll send its value.
+      console.log(`Cookie '${COOKIE_NAME}' found with value: ${cookieValueToSend}. Sending timestamp.`);
     } else {
-      // If the cookie doesn't exist, create it and send the data.
-      const randomNumber = Math.floor(Math.random() * 100) + 1;
-      setCookie(COOKIE_NAME, randomNumber, 1); // Set cookie to expire in 1 hour
-      
-      statusDiv.textContent = `Sending timestamp with value: ${randomNumber}...`;
-      statusDiv.className = "status-message sending";
-      sendTimestamp(randomNumber);
+      // If the cookie doesn't exist, create it.
+      cookieValueToSend = Math.floor(Math.random() * 100) + 1;
+      setCookie(COOKIE_NAME, cookieValueToSend, 1); // Set cookie to expire in 1 hour
+      console.log(`Cookie not found. Set new cookie with value: ${cookieValueToSend}. Sending timestamp.`);
     }
+    
+    // This now runs regardless of whether the cookie was found or newly created.
+    sendTimestamp(cookieValueToSend);
   }
 
   // Add an event listener to run the logic once the page content has fully loaded.
   document.addEventListener("DOMContentLoaded", handlePageLoad);
 })();
-
