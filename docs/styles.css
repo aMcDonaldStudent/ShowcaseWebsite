@@ -152,6 +152,35 @@ button a {
     text-shadow: 1px 1px 2px;
 }
 
+.projects_section{
+    display: flex;
+    justify-content: center;
+    margin: 20px 20px 0;
+    padding: 25px;
+    /* background-color: blueviolet; */
+    background-color: rgba(0, 0, 0, 0.774);
+    transition: transform 0.3s ease;
+    
+}
+.projects_section img{
+    width: 1200px;
+    height: 800px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+.projects_section img:hover{
+    transform: scale(1.06);
+    box-shadow: 0 8px 16px rgba(66, 155, 70, 0.3); 
+    cursor: pointer;
+    box-shadow: 0 0 20px rgb(216, 199, 231);
+}
+/*stylings for the program section */
+#projects_header h1{
+    /* background-color: rgb(197, 91, 179); */
+    background-color: silver;
+    text-shadow: 1px 1px 2px;
+}
+
 
 /*programs section stuff*/
 .skills_section{
