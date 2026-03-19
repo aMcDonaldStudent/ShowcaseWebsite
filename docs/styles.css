@@ -1,323 +1,236 @@
-
-        /* Base Reset */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        body {
-            background-color: #273343; /* interesting color can be reverted maybe later? */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            margin: 0;
-            padding: 0 20px; 
-        }
-
-        /* * MAIN CONTAINER 
-         * Removed aspect-ratio so it truly respects your 900px min-height without warping.
-         */
-        .portfolio-canvas {
-            position: relative;
-            width: 100%;
-            max-width: 1000px;
-            min-height: 900px; /* Your requested higher runway */
-            background-color: #273343; /* SWAP BACK TO background-color: #1e56a0; */
-            overflow: hidden; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        /* * QUADRANT 4: Bottom Left Skills Area 
-         * Locked to exactly 450px tall so it's a solid, unchanging foundation.
-         */
-        .bottom-left-rect {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 55%;
-            height: 450px; 
-            padding: clamp(15px, 4vw, 40px);
-            z-index: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            background-color: #dfdfdf;
-        }
-
-        /* * LAYER 3 (Highest Priority): Top Left White Rectangle 
-         * Pinning it from the top down to exactly where the gray box starts.
-         */
-        .top-left-rect {
-            position: absolute;
-            top: 0%;
-            left: 0;
-            width: 55%;
-            bottom: 450px; /* Automatically fills whatever space is above the gray box */
-            background-color: #ffffff;
-            z-index: 4; 
-            padding: clamp(20px, 5vw, 60px);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        /* * LAYER 2 (2nd Highest Priority): Light Blue Circle */
-        .light-blue-circle {
-            position: absolute;
-            top: -15%;
-            right: -10%;
-            width: 65%;
-            aspect-ratio: 1 / 1; 
-            /* Upped min-width slightly to guarantee it always covers the blue box below */
-            min-width: 450px; 
-            border-radius: 50%;
-            background-color: #eef5fc;
-            z-index: 3; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 20px;
-            pointer-events: none; 
-        }
-        
-        .light-blue-circle * { pointer-events: auto; }
-
-        /* * LAYER 1 (3rd Highest Priority): Dark Blue Rectangle 
-         * THE MAGIC TRICK: We pin BOTH top and bottom. No explicit height!
-         */
-        .dark-blue-rect {
-            position: absolute;
-            right: 0%;
-            width: 45%;
-            top: 375px; 
-            bottom: 0px; 
+h1, h2, h3 {
+    text-align: center;
+}
+.center {
+    text-align: center;
+}
+/*^General formatting for the login*/
+html, body {
+    margin: 0;
+    background: #e2f7c3;
             
-            /* 1. THE TWO-TONE BACKGROUND */
-            /* This creates a hard line exactly at the 70% mark down the box */
-            background: linear-gradient(to bottom, #273343 70%, #dfdfdf 70%);
-            
-            z-index: 2;
-            padding: clamp(20px, 3vw, 40px);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            
-            /* 2. THE CENTERING FIX */
-            justify-content: flex-start; /* Forces content to stick to the top (removes vertical centering) */
-            align-items: center;         /* Centers the content horizontally */
-            text-align: center;          /* Ensures the actual text lines are centered inside their containers */
-            
-            gap: 15px;
-            
-            /* Added 'background' to your transition so it smoothly fades to solid blue */
-            
-            cursor: pointer;
-            overflow: hidden; 
-        }
-
-        /* THE EXTENDED STATE */
-        .dark-blue-rect.is-extended {
-            top: 500px; 
-            
-            /* Reverts to a solid dark blue when hovered/extended */
-            background: #273343; 
-        }
-
-        /* --- Text & Content Styling --- */
-        h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1; }
-        h2 { font-size: clamp(1.2rem, 3vw, 2rem); }
-        p { font-size: clamp(0.85rem, 1.5vw, 1rem); color: #555; }
-        
-        .dark-blue-rect p { color: #ccc; }
-
-        .reveal-text {
-            color: #A0E2E3 !important; 
-            font-weight: 600;
-            text-align: center;
-            margin-bottom: -5px; 
-        }
-
-        .profile-pic-placeholder {
-            width: clamp(80px, 15vw, 150px);
-            height: clamp(80px, 15vw, 150px);
-            border-radius: 50%;
-            background-color: #ccc;
-            border: 6px solid #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            margin-bottom: 15px;
-        }
-
-        .circle-text {
-            color: #333;
-            max-width: 250px;
-            line-height: 1.4;
-        }
-
-        .screenshot-placeholder {
-            width: 100%;
-            height: 200px; /* Fixed height so it doesn't squish */
-            background-color: #1a232e;
-            border: 2px dashed #4a5d73;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.9rem;
-            color: #777;
-            margin-bottom: 10px; 
-        }
-        /*programs section stuff*/
-        .skills_section{
-            align-items: center;
-            margin: 15px 15px 0;
-            text-shadow: 2px 2px 7px rgb(0, 0, 0);
-            /* background-color: blueviolet; */
-            background-color: rgb(149, 207, 214);
-            transition: transform 0.3s ease;
-            color: white;
-            
-            font-size: .8rem;
-            padding: 25px;
-            margin-bottom: 20px;
-        }
-        /*stylings for the program section */
-        #skills_header h1{
-            
-            
-            font-size: 2em;
-            margin-bottom: 15px; /* sets it a bit closer to the pods */
-            color: rgb(255, 255, 255);
-            
-        }
-
-        /* machine: */
-        .skills_grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(60px, 1fr));
-            gap: 15px;
-            justify-items: center; /*Looks better this way */
-            max-width: 1100px; /* Roughly forces it to max at 5 across */
-            margin: 0 auto; /* helps set it to middle */
-        }
-        .skill {
-            
-            color: #fff; /* general color */
-            padding: 5px 15px;
-            border-radius: 10px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: default;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-        }
-
-        .skill:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            background-color: #444;
-        }
-
-        /*mock websites stuff */
-        .program_section{
-            align-items: center;
-            margin: 20px 20px 0;
-            padding: 35px;
-            /* background-color: blueviolet; */
-            background-color: #eef5fc;
-            transition: transform 0.3s ease;
-            text-align: center;
-        }
-        .program_section img{
-            width: 250px;
-            height: 250px;
-            margin: 25px;
-            padding: 15px;
-        }
-        .program_section img:hover{
-            transform: scale(1.03);
-            box-shadow: 0 8px 16px rgba(66, 155, 70, 0.3); 
-            cursor: pointer;
-            box-shadow: 0 0 30px rgb(0, 0, 0);
-        }
-        /*stylings for the program section */
-        #programs_header h1{
-            /* background-color: rgb(197, 91, 179); */
-            
-            text-shadow: 2px 2px 4px #616060;
-        }
-        .work-history {
-            background-color: #aee7f8;
-            width: 1000px;
-            display: flex;             /* Turns on flexbox */
-            justify-content: center;   /* Centers items horizontally */
-            align-items: center;       /* Centers items vertically */
-        }
-        .work-history-div{
-            background-color: #273343;
-            text-align: center;
-            width: 900px;
-            margin: 10px;
-            padding: 50px;
-            color: white;
-        }
-        .work-history-p{
-            color: rgb(255, 255, 255);
-        }
-
-        /* --- Skills Details Panel --- */
-#skill-details-panel {
-    margin-top: 30px;
-    padding: 15px 20px;
-    background-color: rgba(0, 0, 0, 0.15); /* Slightly darker box to house the text */
-    border-radius: 10px;
-    min-height: 120px; /* Reserves the space so the box doesn't jump around */
-    opacity: 0;        /* Hidden by default */
-    transition: opacity 0.3s ease;
 }
 
-#skill-details-panel.visible {
-    opacity: 1;
+.banner {
+    background: #009579;
+            
 }
-
-.confidence-wrapper {
+.banner_content {
+    padding: 16px;
+    max-width: 500px;
+    margin: 0 auto;
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 12px;
+}
+.banner_text {
+    flex-grow: 1;
+    line-height: 1.4;
+    font-family: 'Quicksand', sans-serif;
+}
+.banner_close {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.banner_text, .banner_close {
+    color: #ffffff;
+}
+/*Everything directly above is for general green banner*/
+.nav_bar {
+    background: #a4e3f3;
+    font-family: sans-serif, calibri;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+.nav_div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav_logo a {
+    font-size: 35px; /* pump up size */
+    font-weight: 600; /* put it in bold */
+    color: #1328eb; /*Blue to stand against light blue */
+}
+li {
+    list-style: none; 
+    display: inline-block; /*this stops nav links from stacking */
+}
+li a {
+    color: white;  /* this also goes white so the nav links can stand out more */
+    font-size: 18px; /* making it a little bigger */
+    font-weight: bold; /* makes it stand out more by bolding it */
+    margin-right: 25px; /* spreads the links out so they don't clump */
+}
+.nav_button {
+    background-color: black; 
+    margin-left: 10px; 
+    border-radius: 10px;
+    padding: 10px; 
+    width: 90px;
+    text-decoration: none;
+}
+button a {
+    color: purple;
+    font-weight: bold;
+    font-size: 15px;
+}
+        /* Nav stuff^ */
+.about_section{
+    background-color: #fecd58;
+    border-radius: 25px;
+    padding: 16px;
+    margin: 10 auto;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.confidence-label {
-    font-weight: bold;
+.about_section h1, .about_section h2 {
+    text-align: center; /* Keep headings centered */
+    
+    
+}
+
+.about_section_content {
+    display: flex;
+    align-items: flex-start; /* Align image and text at the top */
+    justify-content: flex-start;
+    width: 100%;
+    gap: 20px; /* Space between image and text */
+
+}
+
+.about_section img {
+    width: 250px; /* Control the size of the image */
+    border-radius: 50%; /* Optional: Make the image round */
+    /*^doesn't do anything when tweaked?*/
+}
+
+.about_section p {
+    font-size: 24px; /*increase text size*/
+    text-align: left; /* Align the paragraph text to the left */
+    max-width: 80%; /* Limit the paragraph width */
+}
+
+#about_section_header {
+    text-shadow: 1px 1px 2px;
+}
+/*about section stuff*/
+
+#contactInfo p{
+    font-size: 1rem;
+}
+/*contact info stuff */
+.program_section{
+    align-items: center;
+    margin: 20px 20px 0;
+    padding: 25px;
+    /* background-color: blueviolet; */
+    background-color: rgba(0, 0, 0, 0.774);
+    transition: transform 0.3s ease;
+    
+}
+.program_section img{
+    width: 300px;
+    height: 300px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+.program_section img:hover{
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(66, 155, 70, 0.3); 
+    cursor: pointer;
+    box-shadow: 0 0 20px rgb(216, 199, 231);
+}
+/*stylings for the program section */
+#programs_header h1{
+    /* background-color: rgb(197, 91, 179); */
+    background-color: silver;
+    text-shadow: 1px 1px 2px;
+}
+
+.projects_section{
+    display: flex;
+    justify-content: center;
+    margin: 20px 20px 0;
+    padding: 25px;
+    /* background-color: blueviolet; */
+    background-color: rgba(0, 0, 0, 0.774);
+    transition: transform 0.3s ease;
+    
+}
+.projects_section img{
+    width: 1200px;
+    height: 800px;
+    margin-right: 15px;
+    margin-left: 15px;
+}
+.projects_section img:hover{
+    transform: scale(1.06);
+    box-shadow: 0 8px 16px rgba(66, 155, 70, 0.3); 
+    cursor: pointer;
+    box-shadow: 0 0 20px rgb(216, 199, 231);
+}
+/*stylings for the program section */
+#projects_header h1{
+    /* background-color: rgb(197, 91, 179); */
+    background-color: silver;
+    text-shadow: 1px 1px 2px;
+}
+
+
+/*programs section stuff*/
+.skills_section{
+    align-items: center;
+    margin: 20px 20px 0;
+    /* background-color: blueviolet; */
+    background-color: rgba(22, 66, 189, 0.945);
+    transition: transform 0.3s ease;
     color: white;
+    text-shadow: 1px 1px 2px;
+    font-size: 1.5rem;
+    padding: 30px;
+    margin-bottom: 20px;
+}
+/*stylings for the program section */
+#skills_header h1{
+    
+    background-color: silver;
+    text-shadow: 1px 1px 2px;
+    font-size: 2rem;
+    font-size: 2em;
+    margin-bottom: 20px; /* sets it a bit closer to the pods */
+    color: black;
 }
 
-.confidence-bar-bg {
-    flex-grow: 1; /* Takes up the remaining horizontal space */
-    height: 10px;
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    overflow: hidden;
+/* machine: */
+.skills_grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  justify-items: center; /*Looks better this way */
+  max-width: 1100px; /* Roughly forces it to max at 5 across */
+  margin: 0 auto; /* helps set it to middle */
 }
 
-.confidence-bar-fill {
-    height: 100%;
-    width: 0%; /* This will be set dynamically by JS */
-    background-color: #A0E2E3; /* Using your nice light blue accent color */
-    transition: width 0.5s ease-out; /* Smooth fill animation */
+.skill {
+  background-color: #222; /* background color styling */
+  color: #fff; /* general color */
+  padding: 10px 15px;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+  font-weight: bold;
+  letter-spacing: 0.5px;
 }
 
-#confidence-percentage {
-    font-weight: bold;
-    min-width: 40px;
+.skill:hover {
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  background-color: #444;
 }
 
-#skill-description {
-    font-size: 0.9rem;
-    line-height: 1.5;
-    color: #eef5fc;
-    margin: 0;
-}
+

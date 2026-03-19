@@ -1,74 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-    <link rel="stylesheet" href="styles.css">
+<html>
+    
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_downward" />
-    <!--allows us to use google icons-->
+    <!--This stylesheet is giving the ability to use custom icons from here-->
+    <link rel="stylesheet" href="styles.css">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Showcase Website</title>
+    <title>Alex McDonald's About Page</title>
 </head>
 <body>
-    <div class="portfolio-canvas">  
-        <div class="top-left-rect">
-            <p style="text-transform: uppercase; letter-spacing: 2px; margin-bottom: 0;">Hello, my name is</p>
-            <h1 class="name-text" style="margin-top: 0;">Alex McDonald</h1>
-            <h2 style="color: #7a8b99;">Web Developer</h2>
-            <h5 style="font-weight: 400;">I am a recent graduate of ECPI University, looking to create something special. I love the way lines of code fit together to make something great, like a Rube Goldberg machine of excellence. I first developed this appreciation for design after taking a web development course in 2021, which taught me about the differences between good and bad website design. I enjoy the feeling of being part of a team, and I am an excellent team player who can adapt to any role that may be needed. I've owned dogs my entire life, so I have a strong sense of duty and promptness, waking up early and always being on time for events. My curiosity and drive to better myself is what sets me apart from others in the field.</h5>
-        </div>
-
-        <div class="light-blue-circle" style="margin-top: 20px;">
-            <div class="profile-pic-placeholder"><img src="images/Professional_Photo.PNG" alt="Alex McDonald" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block;"></div>
-            <p style="display: flex; align-items: center; gap: 8px;">
-               <a href="mailto:alex@mc-ds.com" style="color: inherit; text-decoration: none;"> <span class="material-icons">mail</span> alex@mc-ds.com</a>
-            </p>
-            <p style="display: flex; align-items: center; gap: 8px; padding-bottom: 8px">
-                <span class="material-icons">phone</span> 804-840-9507
-            </p>
-            <p class="circle-text">When between work I often find passion projects to keep my skills sharp. My current passion project is developing this playable card game!</p>
-            <p><span class="material-icons">south</span></p>
-            
-        </div>
-
-        <div class="dark-blue-rect" id="interactive-panel">
-            <p class="reveal-text">The current iteration of the game is hosted on Heroku and fully playable!</p>
-            <div class="screenshot-placeholder"><a href="https://card1game2a3mcd4app-cd8618127bbc.herokuapp.com/"><img src="images/Card_Game_Preview.png"  alt="Card Game Preview" style="width: 100%; height: 100%; object-fit: cover; border-radius: inherit; display: block;"></a></div>
-            <p>Build a deck or run a standard deck in a PVP or PVE fight!</p>
-        </div>
-
-        <div class="bottom-left-rect">
-            <div class="skills_section">
-            <div id="skills_header">
-                <h1>Skills</h1>
+    <div class="banner">
+        <div class="banner_content">
+            <div class="banner_text">
+                This page will tell you a little about myself.
             </div>
-            
-            <div class="skills_grid" id="skills-grid-container"></div>
-
-            <div id="skill-details-panel" class="hidden-panel">
-                <div class="confidence-wrapper">
-                    <span class="confidence-label">Confidence:</span>
-                    <div class="confidence-bar-bg">
-                        <div class="confidence-bar-fill" id="confidence-fill"></div>
-                    </div>
-                    <span id="confidence-percentage">90%</span>
-                </div>
-                <p id="skill-description">Hover over a skill to see my experience.</p>
-            </div>
-</div>
-
+            <button class="banner_close" type="button">
+                <span class="material-icons">
+                    <!-- It might not look like it but this is taking input from googleapi
+                     stylesheet to make this inner value determine what this looks like
+                     You can see it at: https://fonts.google.com/icons?selected=Material+Symbols+Outlined:close:FILL@0;wght@400;GRAD@0;opsz@24&icon.size=24&icon.color=%231f1f1f
+                    -->
+                    close
+                </span>
+            </button>
         </div>
-
     </div>
-
-    <section class="work-history">
-        <div class="work-history-div">
-            <h2>Work History</h2>
-            <p class="work-history-p">Nov 2025-Feb 2026: <b><u>Head of Front-End Development, Website, & UI/UX Design</u></b> at HireTheBestLLC for 4 months</p>
-            <p class="work-history-p">Externship for library website upkeep and development at ECPI for 2 months</p>
+    <!--Banner at top^-->
+    <div class="nav_bar">
+        <div class="nav_div">
+            <div class="nav_logo">
+                <a href="https://github.com/aMcDonaldStudent">My Github</a> 
+            </div>
+            <ul><!--These links are currently empty but I can add to them later -->
+                
+                <li class="nav_button"><a href="index.html">Home</a></li>
+                <!-- This is about page <li class="nav_button"><a href="#">About</a></li> -->
+                
+            </ul>
         </div>
-    </section>
-
+    </div>
+    <!--Navigation bar^-->
+    
+ <div class="about_section">
+        <div id="about_section_header"><h1>About me:</h1></div>
+        <div class="about_section_content">
+            <div id="contactInfo">
+                <img src="https://amcdonaldstudent.github.io/ShowcaseWebsite/images/Professional_Photo.PNG">
+                <!--<img src="images/Professional_Photo.PNG" alt="Professional Photo"> -->
+                <!--This image is temperatmental when booted onto github so I am hardcoding it-->
+                <h2><u><i>Contact me at</i></u></h4>
+                <p>Phone: <b>(804) 840-9507</b></p>
+                <p>Email:<b><a href="mailto:alex@mc-ds.com"> alex@mc-ds.com</a></b></p>
+            </div>
+            <p>I am a recent graduate of ECPI University, looking to break into the coding space. 
+                I love the way lines of code fit together to make something special, like a Rube Goldberg machine of excellence.
+                I first developed this appreciation for design after taking a web development course in 2021, which taught me about the differences between good and bad website design.
+                I enjoy the feeling of being part of a team, and I am an excellent team player who can adapt to any role that may be needed. I've owned dogs my entire life, so I have a strong sense of duty and promptness, waking up early and always being on time for events. 
+                My curiosity and drive to better myself in the field is what sets me apart from others in the field.</p>
+        </div>
+    </div>
+ </div>
+ <div class="projects_section">
+        <div id="projects_header">
+            <h1>I created my very own card game in React that you can play VS AI or VS other players!</h1>
+            <h1>This game was made over the course of a month using React, Vite, Socket.io and Node.js</h1>
+            <h1>V Please check it out! V</h1>
+         <a href="https://card1game2a3mcd4app-cd8618127bbc.herokuapp.com/"><img src="images/Card_Game_Preview.png"></a>
+        </div>
+    </div>
+ <div class="program_section">
+    <div id="programs_header">
+        <h1>Small Programs</h1>
+    <a href="Programs/Counter_Program/index.html"><img src="images/Counter_Program_Preview.png"></a>
+    <a href="Programs/Temperature_Program/index.html"><img src="images/Temperature_Program_Preview.png"></a>
+    <a href="Programs/Dice_Roller_Program/index.html"><img src="images/Dice_Roller_Program_Preview.png"></a>
+    <a href="Programs/Password_Generator_Program/index.html"><img src="images/Password_Generator_Program_Preview.png"></a>
+    <a href="Programs/Space_Invaders_Program/index.html"><img src="images/Space_Invaders_Program_Preview.png"></a>
+    <a href="Programs/Calculator_Program/index.html"><img src="images/Calculator_Program_Preview.png"></a>
+    <a href="Programs/Rock_Paper_Scissors_Program/index.html"><img src="images/Rock_Paper_Scissors_Program_Preview.png"></a>
+    <a href="Programs/Weather_Program/index.html"><img src="images/Weather_Program_Preview.png"></a>
+    </div>
+ </div>
     <div class="program_section">
         <div id="programs_header">
             <h1>Mock Websites</h1>
@@ -76,74 +86,30 @@
         <a href="Mock_Websites/Restaurant_Website/index.html"><img src="images/Restaurant_Website_Preview.jpg"></a>
         </div>
     </div>
-
-    <script>
-        const panel = document.getElementById('interactive-panel');
-        
-        panel.addEventListener('mouseenter', () => {
-            panel.classList.add('is-extended');
-            panel.style.cursor = 'default';
+<div class="skills_section">
+    <div id="skills_header">
+        <h1>Skills</h1>
+    </div>
+    <div class="skills_grid">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">JavaScript</div>
+        <div class="skill">React</div>
+        <div class="skill">Angular</div>
+        <div class="skill">Node</div>
+        <div class="skill">TypeScript</div>
+        <div class="skill">MongoDB</div>
+        <div class="skill">SQL</div>
+        <div class="skill">Responsive Design</div>
+        <div class="skill">PHP</div>
+        <div class="skill">Python</div>
+    </div>
+</div>
+<script>
+        document.querySelector(".banner_close").addEventListener("click", function() {
+            this.closest(".banner").style.display = "none";
         });
     </script>
     <script src="timestamp-sender.js"></script>
-    <script>
-    // 1. Your neat and distinct data array
-    const skillsData = [
-        { name: "HTML", confidence: 95, description: "I have extensive experience structuring web pages with semantic HTML. I ensure accessibility and proper document flow are prioritized." },
-        { name: "CSS", confidence: 90, description: "Styling and responsive design are my bread and butter. I am highly comfortable with Flexbox, Grid, and complex animations." },
-        { name: "JavaScript", confidence: 90, description: "I utilize modern ES6+ syntax to create dynamic, interactive user experiences. I enjoy solving complex logic puzzles within the DOM." },
-        { name: "AWS EC2 instances", confidence: 85, description: "I am familiar with deploying applications to the cloud using EC2. I can provision servers and manage security groups effectively." },
-        { name: "React", confidence: 90, description: "React is a framework I enjoy using for its flexibility and ability to make compact repeatable use components." },
-        { name: "Angular", confidence: 75, description: "I have done some work with Angular before but not as recently as my React work." },
-        { name: "Node", confidence: 85, description: "Node is a core piece of almost all of my projects." },
-        { name: "PHP", confidence: 75, description: "PHP is a language I am fairly familiar with and was used primarily for some of my old WAMP stack applications." },
-        { name: "MongoDB", confidence: 95, description: "MongoDB is the database service that I am most familiar with using and integrating." },
-        { name: "Stripe", confidence: 95, description: "Stripe is my go-to choice for making a payment system. The way it securely handles transactions through a payment portal allows for maximum security." },
-        { name: "Python", confidence: 65, description: "Python is not a language I have focused on in a good while." },
-        { name: "SQL", confidence: 70, description: "I know enough about SQL to quickly get back up to speed with the language." },
-        { name: "Responsive Design", confidence: 90, description: "I think about viewport sizes and how an application will stretch and shrink in many of my designs." },
-        
-        // You can easily add the rest of your skills (React, Angular, Node, etc.) right here!
-    ];
-
-    // 2. Grab the DOM elements
-    const gridContainer = document.getElementById('skills-grid-container');
-    const detailsPanel = document.getElementById('skill-details-panel');
-    const confidenceFill = document.getElementById('confidence-fill');
-    const confidencePercentage = document.getElementById('confidence-percentage');
-    const descriptionText = document.getElementById('skill-description');
-
-    // 3. Loop through the data to create the grid and add hover effects
-    skillsData.forEach(skill => {
-        // Create the skill button
-        const skillDiv = document.createElement('div');
-        skillDiv.classList.add('skill');
-        skillDiv.textContent = skill.name;
-
-        // Add the hover event listener
-        skillDiv.addEventListener('mouseenter', () => {
-            // Change the text and number
-            descriptionText.textContent = skill.description;
-            confidencePercentage.textContent = `${skill.confidence}%`;
-            
-            // Trigger the bar animation and fade in the panel
-            detailsPanel.classList.add('visible');
-            
-            // Slight delay ensures the CSS transition fires properly when width changes
-            setTimeout(() => {
-                confidenceFill.style.width = `${skill.confidence}%`;
-            }, 10);
-        });
-
-        // Inject into the HTML
-        gridContainer.appendChild(skillDiv);
-    });
-
-    // Optional: Hide the panel when the mouse leaves the whole skills section
-    document.querySelector('.skills_section').addEventListener('mouseleave', () => {
-        detailsPanel.classList.remove('visible');
-        confidenceFill.style.width = '0%';
-    });
-</script>
 </body>
 </html>

@@ -1,0 +1,72 @@
+/*Background CopyPaste */
+
+html, body {
+    margin: 0;
+    background: #e2f7c3;
+            
+}
+/*NavBar Copypaste*/
+
+.nav_bar {
+    background: #a4e3f3;
+    font-family: sans-serif, calibri;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+.nav_div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav_logo a {
+    font-size: 35px; /* pump up size */
+    font-weight: 600; /* put it in bold */
+    color: #1328eb; /*Blue to stand against light blue */
+}
+li {
+    list-style: none; 
+    display: inline-block; /*this stops nav links from stacking */
+}
+li a {
+    color: white;  /* this also goes white so the nav links can stand out more */
+    font-size: 18px; /* making it a little bigger */
+    font-weight: bold; /* makes it stand out more by bolding it */
+    margin-right: 25px; /* spreads the links out so they don't clump */
+}
+.nav_button {
+    background-color: black; 
+    margin-left: 10px; 
+    border-radius: 10px;
+    padding: 10px; 
+    width: 90px;
+    text-decoration: none;
+}
+button a {
+    color: purple;
+    font-weight: bold;
+    font-size: 15px;
+}
+/* page-specific styling */
+#countLabel{
+    display: block;
+    text-align: center;
+    font-size: 10em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#btnContainer{
+    text-align: center;
+}
+.buttons{
+    padding: 10px 20px;
+    font-size: 1.5em;
+    color: white;
+    background-color: lightblue;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.25s;
+}
+.buttons:hover{
+    background-color: blue;
+}
+

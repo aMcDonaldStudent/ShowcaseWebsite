@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="nav_bar">
+        <div class="nav_div">
+            <div class="nav_logo">
+                <a href="https://github.com/aMcDonaldStudent">My Github</a>  
+            </div>
+            <ul><!--These links are currently empty but I can add to them later -->
+                
+                <li class="nav_button"><a href="../../index.html">Home</a></li>
+                <!-- This is about page <li class="nav_button"><a href="#">About</a></li> -->
+                
+            </ul>
+        </div>
+    </div>
+    <div class="looseH2">
+        <h2>Generate a Password</h2>
+    
+    <form id="passwordForm">
+    <label for="passwordLength">Password Length:</label>
+    <input id="passwordLength" name="passwordLength" value="12" type="number"><br><br>
+
+    <div class="option-group">
+        <label>Allow Lowercase Characters?</label>
+        <label><input type="radio" name="lowercaseChars" value="true" checked> Yes</label>
+        <label><input type="radio" name="lowercaseChars" value="false"> No</label>
+    </div>
+
+    <div class="option-group">
+        <label>Allow Uppercase Characters?</label>
+        <label><input type="radio" name="uppercaseChars" value="true" checked> Yes</label>
+        <label><input type="radio" name="uppercaseChars" value="false"> No</label>
+    </div>
+
+    <div class="option-group">
+        <label>Allow Numbers 0–9?</label>
+        <label><input type="radio" name="includeNumbers" value="true" checked> Yes</label>
+        <label><input type="radio" name="includeNumbers" value="false"> No</label>
+    </div>
+
+    <div class="option-group">
+        <label>Allow Symbols?</label>
+        <label><input type="radio" name="includeSymbols" value="true" checked> Yes</label>
+        <label><input type="radio" name="includeSymbols" value="false"> No</label>
+    </div>
+    <div>
+        <button id="submitPassword" type="button" onclick="generatePasswordClick()">Generate Password</button>
+    </div>
+    </form>
+        <h2 id="passwordOutput">Your password will go here</h2>
+    </div>
+    
+    <script src="index.js"></script> 
+    <!--Put JS at bottom of body so at least all the html renders even if there is an error-->
+</body>
+</html>

@@ -1,0 +1,92 @@
+.nav_bar {
+    background: #a4e3f3;
+    font-family: sans-serif, calibri;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-bottom: 20px;
+}
+.nav_div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.nav_logo a {
+    font-size: 35px; /* pump up size */
+    font-weight: 600; /* put it in bold */
+    color: #1328eb; /*Blue to stand against light blue */
+}
+li {
+    list-style: none; 
+    display: inline-block; /*this stops nav links from stacking */
+}
+li a {
+    color: white;  /* this also goes white so the nav links can stand out more */
+    font-size: 18px; /* making it a little bigger */
+    font-weight: bold; /* makes it stand out more by bolding it */
+    margin-right: 25px; /* spreads the links out so they don't clump */
+}
+.nav_button {
+    background-color: black; 
+    margin-left: 10px; 
+    border-radius: 10px;
+    padding: 10px; 
+    width: 90px;
+    text-decoration: none;
+}
+button a {
+    color: purple;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background: #e2f7c3;
+}
+
+h1 {
+    color: blue;
+}
+
+form {
+    background-color: white;
+    text-align: center;
+    max-width: 350px;
+    margin: auto;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 15px black;
+}
+
+#textBox{
+    width: 50%;
+    text-align: center;
+    font-size: 2em;
+    border: 2px solid black;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+label {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+button {
+    margin-top: 15px;
+    background-color: red;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover{
+    background-color: blue;
+}
+
+#result {
+    font-size: 1.75em;
+    font-weight: bold;
+}
